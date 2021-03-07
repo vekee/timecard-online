@@ -509,7 +509,11 @@ function createPDF(downLoadFlag = true) {
     timeCardPDFName = timeCardPDFName + ".pdf"
 
     if (downLoadFlag) {
-        doc.save(timeCardPDFName);
+        if (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase())) {
+            window.open(doc.output('bloburl', { filename: timeCardPDFName }));
+        } else {
+            doc.save(timeCardPDFName);
+        }
     }
 
     return btoa(doc.output());
