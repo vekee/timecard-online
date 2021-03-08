@@ -243,10 +243,10 @@ function createTimeCard(timeCardYm) {
     month = month.substr(4);
 
     var days = getDaysOfMonth(year, month);
-    var addRowContent = '<tr id="time-card-day-row" class="text-center">';
+    var addRowContent = '<tr id="time-card-day-row" class="text-center align-middle">';
     addRowContent = addRowContent + '<td id="time-card-date">rowDay</td>';
     addRowContent = addRowContent + '<td id="time-card-week">weekDay</td>';
-    addRowContent = addRowContent + '<td><input type="text" id="start-time" size="5" class="border-0" style="min-width: 100%;resize:none" value="9:00"></td>';
+    addRowContent = addRowContent + '<td><input type="text" id="start-time" class="border-0" style="min-width: 100%;resize:none" value="9:00"></td>';
     addRowContent = addRowContent + '<td id="interval">〜</td>';
     addRowContent = addRowContent + '<td><input type="text" id="end-time" size="5" class="border-0" style="min-width: 100%;resize:none" value="18:00"></td>';
     addRowContent = addRowContent + '<td><input type="text" id="lunch-time" size="5" class="border-0" style="min-width: 100%;resize:none" value="1:00"></td>';
@@ -255,7 +255,7 @@ function createTimeCard(timeCardYm) {
     addRowContent = addRowContent + '<td><textarea class="border-0" rows="1" id="comment-text" value="" style="min-width: 100%;resize:none"></textarea></td>';
     addRowContent = addRowContent + '</tr>';
 
-    var addRowNoWorkContent = '<tr id="time-card-day-row" class="text-center table-secondary">';
+    var addRowNoWorkContent = '<tr id="time-card-day-row" class="text-center align-middle table-secondary">';
     addRowNoWorkContent = addRowNoWorkContent + '<td id="time-card-date">rowDay</td>';
     addRowNoWorkContent = addRowNoWorkContent + '<td id="time-card-week">weekDay</td>';
     addRowNoWorkContent = addRowNoWorkContent + '<td><input type="text" id="start-time" size="5" class="border-0 table-secondary" style="background-color:  #e2e3e5!important;min-width: 100%;resize:none" placeholder="" value=""></td>';
@@ -267,7 +267,7 @@ function createTimeCard(timeCardYm) {
     addRowNoWorkContent = addRowNoWorkContent + '<td><textarea class="border-0 table-secondary" rows="1" id="comment-text" value="" style="background-color:  #e2e3e5!important;min-width: 100%;resize:none"></textarea></td>';
     addRowNoWorkContent = addRowNoWorkContent + '</tr>';
 
-    addTotalContent = '<tr id="time-card-total-row" class="text-center">';
+    addTotalContent = '<tr id="time-card-total-row" class="text-center align-middle">';
     addTotalContent = addTotalContent + '<td class="text-end" colspan="7">合計：</td>';
     addTotalContent = addTotalContent + '<td id="total-time">totalTime</td>';
     addTotalContent = addTotalContent + '<td></td>';
@@ -509,8 +509,8 @@ function createPDF(downLoadFlag = true) {
     timeCardPDFName = timeCardPDFName + ".pdf"
 
     if (downLoadFlag) {
-        if (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase())) {
-            window.open(doc.output('bloburl', { filename: timeCardPDFName }));
+        if ((/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase())) || window.matchMedia("(max-width: 767px)").matches) {
+            alert("モバイル端末でPDFダウンロードを対応しているため、メール送信よりPDFを取得してください。")
         } else {
             doc.save(timeCardPDFName);
         }
