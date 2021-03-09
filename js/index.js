@@ -246,7 +246,7 @@ function createTimeCard(timeCardYm) {
     var addRowContent = '<tr id="time-card-day-row" class="text-center align-middle">';
     addRowContent = addRowContent + '<td id="time-card-date">rowDay</td>';
     addRowContent = addRowContent + '<td id="time-card-week">weekDay</td>';
-    addRowContent = addRowContent + '<td><input type="text" id="start-time" class="border-0" style="min-width: 100%;resize:none" value="9:00"></td>';
+    addRowContent = addRowContent + '<td><input type="text" id="start-time" size="5" class="border-0" style="min-width: 100%;resize:none" value="9:00"></td>';
     addRowContent = addRowContent + '<td id="interval">〜</td>';
     addRowContent = addRowContent + '<td><input type="text" id="end-time" size="5" class="border-0" style="min-width: 100%;resize:none" value="18:00"></td>';
     addRowContent = addRowContent + '<td><input type="text" id="lunch-time" size="5" class="border-0" style="min-width: 100%;resize:none" value="1:00"></td>';
