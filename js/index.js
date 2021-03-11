@@ -62,7 +62,7 @@ $(document).ready(function () {
     });
 
     // 勤務時間入力がある場合
-    $('#time-card-table tbody tr td input').change(function () {
+    $(document).on("input change", "#time-card-table tbody tr td input", function (e) {
         var objId = this.id;
         var stringArray = objId.split("-");
         var rowNo = stringArray[stringArray.length - 1];
@@ -273,7 +273,7 @@ function createTimeCard(timeCardYm) {
     addTotalContent = addTotalContent + '<td></td>';
     addTotalContent = addTotalContent + '</tr>';
 
-
+    var totalTime = 0;
     for (day = 1; day <= days; day++) {
         var temp = "";
         rowDay = month + "月" + day + "日";
@@ -286,6 +286,7 @@ function createTimeCard(timeCardYm) {
             temp = temp.replace("weekDay", weekDay);
             temp = temp.replace('></textarea>', '>' + holiday + '</textarea>');
 
+            temp = temp.replace("time-card-day-row", "time-card-day-row-" + day);
             temp = temp.replace("time-card-date", "time-card-date-" + day);
             temp = temp.replace("time-card-week", "time-card-week-" + day);
             temp = temp.replace("start-time", "start-time-" + day);
@@ -303,6 +304,7 @@ function createTimeCard(timeCardYm) {
             temp = temp.replace("weekDay", weekDay);
             temp = temp.replace('></textarea>', '>' + holiday + '</textarea>');
 
+            temp = temp.replace("time-card-day-row", "time-card-day-row-" + day);
             temp = temp.replace("time-card-date", "time-card-date-" + day);
             temp = temp.replace("time-card-week", "time-card-week-" + day);
             temp = temp.replace("start-time", "start-time-" + day);
@@ -319,6 +321,7 @@ function createTimeCard(timeCardYm) {
             temp = temp.replace("rowDay", rowDay);
             temp = temp.replace("weekDay", weekDay);
 
+            temp = temp.replace("time-card-day-row", "time-card-day-row-" + day);
             temp = temp.replace("time-card-date", "time-card-date-" + day);
             temp = temp.replace("time-card-week", "time-card-week-" + day);
             temp = temp.replace("start-time", "start-time-" + day);
@@ -330,10 +333,13 @@ function createTimeCard(timeCardYm) {
             temp = temp.replace("comment-text", "comment-text-" + day);
 
             $('#time-card-table tbody').append(temp);
+
+            totalTime = totalTime + 8;
         }
 
     }
-    totalTime = (days * 8) + ":00";
+
+    totalTime = String(totalTime) + ":00";
     $('#time-card-table tbody').append(addTotalContent.replace("totalTime", totalTime));
 }
 
