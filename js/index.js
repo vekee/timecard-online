@@ -515,7 +515,7 @@ function createPDF(downLoadFlag = true) {
     timeCardPDFName = timeCardPDFName + ".pdf"
 
     if (downLoadFlag) {
-        if ((/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase())) || window.matchMedia("(max-width: 767px)").matches) {
+        if ((/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()))) {
             alert("モバイル端末でPDFダウンロードを対応しているため、メール送信よりPDFを取得してください。")
         } else {
             doc.save(timeCardPDFName);
