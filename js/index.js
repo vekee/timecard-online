@@ -410,19 +410,19 @@ function createPDF(downLoadFlag = true) {
     var inputRow1 = [
         { content: $('#time-card-ym').val() + "　度", colSpan: 1, styles: { halign: 'left', fillColor: null } },
         { content: "", colSpan: 1, styles: { halign: 'left', fillColor: null } },
-        { content: "提出日:" + $('#time-card-submite-date').val(), colSpan: 1, styles: { halign: 'left', fillColor: null } }
+        { content: "提出日：" + $('#time-card-submite-date').val(), colSpan: 1, styles: { halign: 'left', fillColor: null } }
     ];
     inputBody.push(inputRow1);
     var inputRow2 = [
-        { content: "作業名:" + $('#time-card-task').val(), colSpan: 1, styles: { halign: 'left', fillColor: null } },
+        { content: "作業名：" + $('#time-card-task').val(), colSpan: 1, styles: { halign: 'left', fillColor: null } },
         { content: "", colSpan: 1, styles: { halign: 'left', fillColor: null } },
-        { content: "所　属:" + $('#time-card-group').val(), colSpan: 1, styles: { halign: 'left', fillColor: null } }
+        { content: "所　属：" + $('#time-card-group').val(), colSpan: 1, styles: { halign: 'left', fillColor: null } }
     ];
     inputBody.push(inputRow2);
     var inputRow3 = [
         { content: "", colSpan: 1, styles: { halign: 'left', fillColor: null } },
         { content: "", colSpan: 1, styles: { halign: 'left', fillColor: null } },
-        { content: "氏　名:" + $('#time-card-name').val(), colSpan: 1, styles: { halign: 'left', fillColor: null } }
+        { content: "氏　名：" + $('#time-card-name').val(), colSpan: 1, styles: { halign: 'left', fillColor: null } }
     ];
     inputBody.push(inputRow3);
 
