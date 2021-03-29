@@ -61,8 +61,8 @@ $(document).ready(function () {
         }
     });
 
-    // 勤務時間入力がある場合
-        $(document).on("change", "#time-card-table tbody tr td input", function (e) {
+    // 勤務時間変動がある場合
+    $(document).on("change", "#time-card-table tbody tr td input", function (e) {
         var objId = this.id;
         var stringArray = objId.split("-");
         var rowNo = stringArray[stringArray.length - 1];
@@ -82,6 +82,8 @@ $(document).ready(function () {
         var breakTime = "";
         var workTime = "";
         var commentText = "";
+
+        workTimeBeforeChange = formatTime($('#' + workTimeId).text());
 
         if (objId == startTimeId) {
             if ($(this).val() == null || $(this).val() == "") {
@@ -166,8 +168,7 @@ $(document).ready(function () {
         totalTime = formatTime($('#total-time').text());
 
         newWorkTime = calWorkTime(startTime, endTime, lunchTime, breakTime);
-
-        diffWorkTime = calWorkTime(newWorkTime, workTime, "00:00", "00:00");
+        diffWorkTime = calWorkTime(newWorkTime, workTimeBeforeChange, "00:00", "00:00");
         newTotalTime = calWorkTime(diffWorkTime, totalTime, "00:00", "00:00");
 
         $('#' + workTimeId).text(newWorkTime);
