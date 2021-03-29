@@ -83,8 +83,6 @@ $(document).ready(function () {
         var workTime = "";
         var commentText = "";
 
-        workTimeBeforeChange = formatTime($('#' + workTimeId).text());
-
         if (objId == startTimeId) {
             if ($(this).val() == null || $(this).val() == "") {
                 $('#' + startTimeId).val("");
@@ -168,15 +166,42 @@ $(document).ready(function () {
         totalTime = formatTime($('#total-time').text());
 
         newWorkTime = calWorkTime(startTime, endTime, lunchTime, breakTime);
-        diffWorkTime = calWorkTime(newWorkTime, workTimeBeforeChange, "00:00", "00:00");
-        newTotalTime = calWorkTime(diffWorkTime, totalTime, "00:00", "00:00");
 
         $('#' + workTimeId).text(newWorkTime);
-        $('#total-time').text(newTotalTime);
+
+        //合計時間を再計算する
+        calTotalTime();
 
     })
 
 });
+
+function calTotalTime() {
+    timeCardYm  = $('#time-card-ym').val()
+    var year = timeCardYm.substr(0, 4);
+    var month = timeCardYm.replace("月", "");
+    month = month.replace("年", "");
+    month = month.replace("/", "");
+    month = month.replace(" ", "");
+    month = month.replace("　", "");
+    month = month.substr(4);
+
+    var days = getDaysOfMonth(year, month);
+    totalTime = "00:00"
+    totalTimeArray = totalTime.split(":");
+    for (day = 1; day <= days; day++) {
+        workTime = formatTime($('#work-time-' + day).text());
+        workTimeArray = workTime.split(":");
+        totalTimeArray[0] = Number(totalTimeArray[0]) + Number(workTimeArray[0])
+        totalTimeArray[1] = Number(totalTimeArray[1]) + Number(workTimeArray[1])
+        if (totalTimeArray[1] >= 60) {
+            totalTimeArray[0] = Number(totalTimeArray[0]) + 1
+            totalTimeArray[1] = Number(totalTimeArray[1]) - 60
+        }
+    }
+
+    $('#total-time').text(formatTime(String(totalTimeArray[0]) + ":" + String(totalTimeArray[1])));
+}
 
 function formatTime(time) {
     if (time == null || time == "") {
@@ -195,9 +220,7 @@ function formatTime(time) {
     t = time.split(":");
     hour = t[0];
     min = t[1];
-    // if (String(hour).length < 2) {
-    //     hour = "0" + hour;
-    // }
+
     if (String(min).length < 2) {
         min = "0" + min;
     }
@@ -219,10 +242,6 @@ function calWorkTime(startTime, endTime, lunchTime, breakTime) {
         min = min + 60;
         hour = hour - 1;
     }
-
-    // if (String(hour).length < 2) {
-    //     hour = "0" + hour;
-    // } 
 
     if (String(min).length < 2) {
         min = "0" + min;
