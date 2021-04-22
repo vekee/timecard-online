@@ -55,6 +55,8 @@ $(document).ready(function () {
         var sendCc = $('#send-cc').val();
         var sendBcc = $('#send-bcc').val();
         if ((sendTo != null && sendTo != "") || (sendCc != null && sendCc != "") || (sendBcc != null && sendBcc != "")) {
+            $('#send-mail').prop('disabled', true);
+            $('#send-mail').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>送信中...`);
             sendMail();
         } else {
             alert("宛先、CC、BCCに何かにメールアドレスを入力してください。");
@@ -604,7 +606,7 @@ function sendMail() {
         fileName: mailTitle + ".pdf",
         fileBytes: createPDF(false)
     };
-
+    
     $.ajax({
         type: 'POST',
         url: 'https://formsendbox.com/sendSimpleMailWtihAttachment',
@@ -628,4 +630,5 @@ function sendMail() {
         complete: function (data) {
         }
     })
+
 }
