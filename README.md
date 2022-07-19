@@ -14,7 +14,7 @@ also you can download the created timecard pdf, but on mobile is not support yet
     5. Create new Pull Request
 
 #### Licence
-[MIT](https://github.com/vekee/timecard-online/blob/dev/LICENSE.md)
+[MIT](https://github.com/vekee/timecard-online/LICENSE.md)
 
 #### Author
 DUAN DAHAI  
