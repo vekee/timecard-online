@@ -609,8 +609,8 @@ function sendMail() {
     
     $.ajax({
         type: 'POST',
-        url: 'https://formsendbox.com/sendSimpleMailWtihAttachment',
-        // url: 'http://localhost:8080/sendSimpleMailWtihAttachment',
+        url: 'https://formsendbox.com/sendSimpleMailWithAttachment',
+        // url: 'http://localhost:8080/sendSimpleMailWithAttachment',
         data: JSON.stringify(data),
         contentType: 'application/json',
         beforeSend: function (xhr) {
