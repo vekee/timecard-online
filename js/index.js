@@ -604,7 +604,9 @@ function sendMail() {
         ccList: ccList,
         bccList: bccList,
         fileName: mailTitle + ".pdf",
-        fileBytes: createPDF(false)
+        fileBytes: createPDF(false),
+        formsendbox_id: "b309590d3bb80e140873d729be7c8d6d", 
+        formsendbox_key: "2b2731af96cc3d862395993a7ba1188d"
     };
     
     $.ajax({
